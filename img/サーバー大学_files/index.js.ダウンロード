@@ -1,0 +1,59 @@
+jQuery(window).on("scroll",function(){
+    documentHeight = jQuery(document).height();
+    scrollPosition = jQuery(this).height() + jQuery(this).scrollTop();
+    footerHeight = jQuery(".footer-all").innerHeight();
+
+    if(documentHeight - scrollPosition <= footerHeight){
+        jQuery(".header").css({
+            position:"absolute",
+            bottom:15
+        });
+    } else{
+        jQuery(".header").css({
+            position:"fixed",
+            bottom:15
+        });
+    }
+});
+var loop = setInterval(function() {
+    //li先頭要素のクローンを作成
+    var clone = $(".slider-ul li:first").clone(true);
+    //li先頭要素のマージントップにマイナスを指定しアニメーションさせる
+    $(".slider-ul li:first").animate({
+    marginLeft : "-347px"
+    }, {
+    duration : 500,
+    complete : function() {
+        //処理完了時に先頭要素を削除
+        $(".slider-ul li:first").remove();
+        //クローンをliの最後に追加
+        clone.clone(true).insertAfter($(".slider-ul li:last"));
+    }
+    });
+}, 3000);
+
+
+    var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+    var loop = setInterval(function() {
+        //li先頭要素のクローンを作成
+        var clone = $(".swiper-wrapper:first").clone(true);
+        //li先頭要素のマージントップにマイナスを指定しアニメーションさせる
+        $(".swiper-wrapper:first").animate({
+        marginLeft : "-604px"
+        }, {
+        duration : 500,
+        complete : function() {
+            //処理完了時に先頭要素を削除
+            $(".swiper-wrapper:first").remove();
+            //クローンをliの最後に追加
+            clone.clone(true).insertAfter($(".swiper-wrapper:last"));
+        }
+        });
+    }, 1000);
+ 
